@@ -1,0 +1,15 @@
+{
+  "github": {
+    "baseUrl": "",
+    "repoOwner": "",
+    "repoName": ""
+  },
+  "slack": {
+    "allowedUsers": [
+      "john",
+      "debra",
+      "alex",
+      "kentaro"
+    ]
+  }
+}

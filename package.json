@@ -1,0 +1,32 @@
+{
+  "name": "issue-creator",
+  "version": "0.1.0",
+  "description": "A Slack slash command for creating quickly a new issue.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/**"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kentaro-m/issue-creator.git"
+  },
+  "author": "Kentaro Matsushita",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kentaro-m/issue-creator/issues"
+  },
+  "homepage": "https://github.com/kentaro-m/issue-creator#readme",
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-standard": "^3.1.0"
+  },
+  "dependencies": {
+    "@octokit/rest": "^15.10.0",
+    "config": "^2.0.1"
+  }
+}
