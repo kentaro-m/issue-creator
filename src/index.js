@@ -11,14 +11,13 @@ const createResponse = (statusCode, body) => ({
   }
 })
 
-const isAllowedUser = (executeUser, allowedUsers) => {
-  for (const allowedUser of allowedUsers) {
-    if (executeUser === allowedUser) {
-      return true
+const getExecuteUserInfo = (executeUser, users) => {
+  for (const user of users) {
+    if (executeUser === user.slack) {
+      return user
     }
   }
-
-  return false
+  return {}
 }
 
 exports.handler = async (event) => {
@@ -43,9 +42,12 @@ exports.handler = async (event) => {
       throw new Error('No GITHUB_TOKEN found on environment variables.')
     }
 
-    if (!isAllowedUser(user, config.slack.allowedUsers)) {
+    const userInfo = getExecuteUserInfo(user, config.users)
+
+    if (!userInfo) {
       throw new Error('Not permitted to execute the issue creator command.')
     }
+
 
     const options = {
       headers: {
@@ -71,7 +73,8 @@ exports.handler = async (event) => {
     const result = await octokit.issues.create({
       owner: repoOwner,
       repo: repoName,
-      title: commandText
+      title: commandText,
+      assignee: userInfo.github
     })
 
     const body = {

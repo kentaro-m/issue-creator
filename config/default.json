@@ -4,12 +4,22 @@
     "repoOwner": "",
     "repoName": ""
   },
-  "slack": {
-    "allowedUsers": [
-      "john",
-      "debra",
-      "alex",
-      "kentaro"
-    ]
-  }
+  "users": [
+    {
+      "slack": "john",
+      "github": "john"
+    },
+    {
+      "slack": "debra",
+      "github": "debra"
+    },
+    {
+      "slack": "alex",
+      "github": "alex"
+    },
+    {
+      "slack": "kentaro",
+      "github": "kentaro"
+    }
+  ]
 }

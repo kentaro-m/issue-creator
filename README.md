@@ -45,13 +45,24 @@ Update the configuration file (`config/default.json`).
     "repoOwner": "", // required: A repository owner name where a new issue is created.
     "repoName": "" // required: A repository name where a new issue is created.
   },
-  "slack": {
-    "allowedUsers": [ // required: A list of users who are allowed to execute slash command.
-      "john",
-      "debra",
-      "alex"
-    ]
-  }
+  "users": [ // required: A list of users who are allowed to execute slash command and assigned to the issue.
+    {
+      "slack": "john",
+      "github": "john"
+    },
+    {
+      "slack": "debra",
+      "github": "debra"
+    },
+    {
+      "slack": "alex",
+      "github": "alex"
+    },
+    {
+      "slack": "kentaro",
+      "github": "kentaro"
+    }
+  ]
 }
 ```
 
