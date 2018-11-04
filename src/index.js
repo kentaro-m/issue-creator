@@ -22,6 +22,7 @@ const getExecuteUserInfo = (executeUser, users) => {
 
 exports.handler = async (event) => {
   console.log(JSON.stringify(event))
+
   try {
     const githubToken = process.env.GITHUB_TOKEN
     const { baseUrl, repoOwner, repoName } = config.github

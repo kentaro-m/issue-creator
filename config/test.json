@@ -1,0 +1,25 @@
+{
+  "github": {
+    "baseUrl": "",
+    "repoOwner": "kentaro-m",
+    "repoName": "idea"
+  },
+  "users": [
+    {
+      "slack": "john",
+      "github": "john"
+    },
+    {
+      "slack": "debra",
+      "github": "debra"
+    },
+    {
+      "slack": "alex",
+      "github": "alex"
+    },
+    {
+      "slack": "kentaro",
+      "github": "kentaro"
+    }
+  ]
+}
