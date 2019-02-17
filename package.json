@@ -5,7 +5,16 @@
   "main": "src/index.js",
   "scripts": {
     "test": "jest --coverage",
-    "lint": "eslint src/**"
+    "lint": "eslint src/**",
+    "config": "node ./scripts/configure.js",
+    "deconfig": "node ./scripts/deconfigure.js"
+  },
+  "config": {
+    "s3BucketName": "YOUR_UNIQUE_BUCKET_NAME",
+    "region": "YOUR_AWS_REGION",
+    "cloudFormationStackName": "AwsServerlessExpressStack",
+    "functionName": "YOUR_SERVERLESS_EXPRESS_LAMBDA_FUNCTION_NAME",
+    "accountId": "YOUR_ACCOUNT_ID"
   },
   "repository": {
     "type": "git",
@@ -18,7 +27,8 @@
   },
   "homepage": "https://github.com/kentaro-m/issue-creator#readme",
   "devDependencies": {
-    "eslint": "^5.4.0",
+    "@slack/client": "^4.9.0",
+    "eslint": "^5.14.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^7.0.1",
@@ -28,6 +38,11 @@
   },
   "dependencies": {
     "@octokit/rest": "^15.10.0",
-    "config": "^2.0.1"
+    "aws-serverless-express": "^3.3.5",
+    "body-parser": "^1.18.3",
+    "config": "^2.0.1",
+    "crypto": "^1.0.1",
+    "express": "^4.16.4",
+    "tsscmp": "^1.0.6"
   }
 }
