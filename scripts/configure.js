@@ -44,7 +44,7 @@ if (!bucketName) {
   process.exit(1)
 }
 
-modifyFiles(['../simple-proxy-api.yaml', '../package.json', '../cloudformation.yaml'], [{
+modifyFiles(['./simple-proxy-api.yaml', './package.json', './cloudformation.yaml'], [{
   regexp: /YOUR_ACCOUNT_ID/g,
   replacement: accountId
 }, {

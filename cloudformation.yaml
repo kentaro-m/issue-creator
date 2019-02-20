@@ -12,6 +12,9 @@ Parameters:
   SlackApiToken:
     Description: A token for calling Slack API.
     Type: String
+  SlackSigningSecret:
+    Description: A token for verify Slack.
+    Type: String
 
 Resources:
   ApiGatewayApi:
@@ -90,6 +93,7 @@ Resources:
         Variables:
           GITHUB_API_TOKEN: !Ref GitHubApiToken
           SLACK_API_TOKEN: !Ref SlackApiToken
+          SLACK_SIGNING_SECRET: !Ref SlackSigningSecret
 
 Outputs:
   LambdaFunctionConsoleUrl:

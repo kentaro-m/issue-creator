@@ -1,8 +1,8 @@
 {
   "github": {
     "baseUrl": "",
-    "repoOwner": "",
-    "repoName": ""
+    "repoOwner": "kentaro-m",
+    "repoName": "issue-creator-test"
   },
   "users": [
     {
@@ -19,7 +19,7 @@
     },
     {
       "slack": "kentaro",
-      "github": "kentaro"
+      "github": "kentaro-m"
     }
   ]
 }

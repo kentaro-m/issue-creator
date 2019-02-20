@@ -1,8 +1,5 @@
-const AppConfig = require('config')
-const { createIssue } = require('./handler')
+const awsServerlessExpress = require('aws-serverless-express')
+const app = require('./app')
+const server = awsServerlessExpress.createServer(app)
 
-exports.handler = async (event) => {
-  console.log(JSON.stringify(event))
-  const response =  await createIssue(event, AppConfig)
-  return response
-}
+exports.handler = (event, context) => { awsServerlessExpress.proxy(server, event, context) }

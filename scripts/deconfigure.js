@@ -2,10 +2,10 @@
 'use strict'
 
 const modifyFiles = require('./utils').modifyFiles
-const packageJson = require('../src/package.json')
+const packageJson = require('../package.json')
 const config = packageJson.config
 
-modifyFiles(['../simple-proxy-api.yaml', '../package.json', '../cloudformation.yaml'], [{
+modifyFiles(['./simple-proxy-api.yaml', './package.json', './cloudformation.yaml'], [{
   regexp: new RegExp(config.accountId, 'g'),
   replacement: 'YOUR_ACCOUNT_ID'
 }, {
