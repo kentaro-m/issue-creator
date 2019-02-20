@@ -12,6 +12,10 @@ class Issue {
   async create (data) {
     return this.octokit.issues.create(data)
   }
+
+  async getLabels (data) {
+    return this.octokit.issues.getLabels(data)
+  }
 }
 
 module.exports = Issue

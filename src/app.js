@@ -31,8 +31,43 @@ app.use(awsServerlessExpressMiddleware.eventContext())
 app.post('/command', async (req, res) => {
   try {
     const {text, trigger_id} = req.body
+    const githubToken = process.env.GITHUB_API_TOKEN
 
     if (signature.isVerified(req)) {
+      const issueOptions = {
+        token: githubToken,
+        octokitOptions: {
+          headers: {
+            'user-agent': `issue-creator v${version}`
+          }
+        }
+      }
+
+      if (AppConfig.github.baseUrl) {
+        issueOptions.octokitOptions.baseUrl = AppConfig.github.baseUrl
+      }
+
+      const issue = new Issue(issueOptions)
+
+      const result = await issue.getLabels({
+        owner: AppConfig.github.repoOwner,
+        repo: AppConfig.github.repoName,
+      })
+
+      const labels = result.data.map(label => {
+        return {
+          label: label.name,
+          value: label.name,
+        }
+      })
+
+      const assignees = AppConfig.users.map(user => {
+        return {
+          label: user.github,
+          value: user.github,
+        }
+      })
+
       const slackToken = process.env.SLACK_API_TOKEN
       const web = new WebClient(slackToken)
 
@@ -44,7 +79,7 @@ app.post('/command', async (req, res) => {
           submit_label: 'Create',
           elements: [
             {
-              label: 'Issue Title',
+              label: 'Title',
               type: 'text',
               name: 'title',
               value: text,
@@ -55,6 +90,20 @@ app.post('/command', async (req, res) => {
               type: 'textarea',
               name: 'description',
               optional: true
+            },
+            {
+              label: "Label",
+              type: "select",
+              name: "label",
+              optional: true,
+              options: labels
+            },
+            {
+              label: "Assignee",
+              type: "select",
+              name: "assignee",
+              optional: true,
+              options: assignees
             }
           ]
         }
@@ -99,8 +148,9 @@ app.post('/interactive', async (req, res) => {
         owner: AppConfig.github.repoOwner,
         repo: AppConfig.github.repoName,
         title: body.submission.title,
-        assignees: [ executeUserInfo.github ],
-        body: body.submission.description
+        assignees: [ body.submission.assignee || executeUserInfo.github ],
+        body: body.submission.description,
+        labels: [ body.submission.label ]
       }
 
       const result = await issue.create(issueData)
